@@ -3,7 +3,7 @@ This tool has two parts.  The first part of the tool found in detect_encryption.
 an analysis on a file to determine if it is encrypted or not.  The second part of the tool, 
 simply decrypts the provided ciphter.txt file, which is AES encrypted. 
 
-Resources for installing rails (linux assumed):
+Resources for installing ruby (linux assumed):
 
 https://www.ruby-lang.org/en/downloads/
 
