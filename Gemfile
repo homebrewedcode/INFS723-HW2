@@ -2,4 +2,4 @@ source "https://rubygems.org"
 
 gem 'rubyzip'
 gem 'ruby-filemagic'
-gem 'rubyzip'
+gem 'colorize'

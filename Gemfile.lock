@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    colorize (0.8.1)
     ruby-filemagic (0.7.2)
     rubyzip (1.2.1)
 
@@ -8,6 +9,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   ruby-filemagic
   rubyzip
 

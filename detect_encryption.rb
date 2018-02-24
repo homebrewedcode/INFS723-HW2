@@ -1,4 +1,6 @@
 require './DetectEncryption'
+require 'colorize'
+
 puts '___________                                          __   .__
  \_   _____/  ____    ____  _______  ___.__.______  _/  |_ |__|  ____    ____
   |    __)_  /    \ _/ ___\ \_  __ \<   |  |\____ \ \   __\|  | /  _ \  /    \
@@ -31,7 +33,7 @@ puts "The caveat is that some encrypted files actually have a header."
 puts "==================================================================================\n\n"
 
 entropy = DetectEncryption.new(filename)
-puts entropy.header_info
+puts "#{entropy.header_info}".green
 
 puts "\n=================================================================================="
 puts "This test will check the entropy of the first 512 bytes of the file,"
@@ -43,7 +45,7 @@ puts "==========================================================================
 
 file_entropy = entropy.entropy
 encrypted_status = file_entropy >= 6.5 ? "encrypted" : "not encrypted"
-puts "File entropy is #{file_entropy}.  The file is likely #{encrypted_status}."
+puts "File entropy is #{file_entropy}.  The file is likely #{encrypted_status}.".green
 
 puts "\n=================================================================================="
 puts "The final check compresses the file and checks for the difference in file size"
@@ -56,8 +58,8 @@ puts "==========================================================================
 reduction_ratio = entropy.zip_test_ratio
 encrypted_status = reduction_ratio >= 0.95 ? "encrypted" : "not encrypted"
 if reduction_ratio < 0
-  puts "File is too small for this test."
-elsif puts "The file reduction ratio is #{reduction_ratio}.  The file is likely #{encrypted_status}."
+  puts "File is less than 1KB (#{entropy.file_size} bytes total). It is too small for this test.".green
+elsif puts "The file reduction ratio is #{reduction_ratio}.  The file is likely #{encrypted_status}.\n".green
 
 end
 
