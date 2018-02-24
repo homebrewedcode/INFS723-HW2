@@ -14,4 +14,4 @@ decipher.iv = "\xF3\xBC\x6E\x5B\x28\x1E\xBF\x67\x21\x0C\xD6\x88\x37\xFF\xDE\x9A"
 contents = IO.binread('cipher.txt')
 plain = decipher.update(contents) + decipher.final
 File.open("plain.txt", "w") {|f| f.write plain}
-puts plain
+
