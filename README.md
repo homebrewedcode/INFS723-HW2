@@ -6,7 +6,9 @@ simply decrypts the provided ciphter.txt file, which is AES encrypted.
 Resources for installing rails (linux assumed):
 
 https://www.ruby-lang.org/en/downloads/
+
 https://rvm.io/
+
 https://gorails.com/setup/ubuntu/16.04
 
 
