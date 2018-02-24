@@ -3,6 +3,13 @@ This tool has two parts.  The first part of the tool found in detect_encryption.
 an analysis on a file to determine if it is encrypted or not.  The second part of the tool, 
 simply decrypts the provided ciphter.txt file, which is AES encrypted. 
 
+Resources for installing rails (linux assumed):
+
+https://www.ruby-lang.org/en/downloads/
+https://rvm.io/
+https://gorails.com/setup/ubuntu/16.04
+
+
 STEPS:
 
 Make sure Ruby is installed, I used version 2.5.0, though recent ones will likely work
