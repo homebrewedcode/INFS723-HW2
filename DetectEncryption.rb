@@ -17,7 +17,13 @@ class DetectEncryption
     compress_file
   end
 
+  # Builds a list of the frequency of each byte occurence in the file for the first 512 bytes.
+  # From some testing, it seemed that beginning bytes in the file was the best for determining
+  # entropy, even for binary files.  This is likely due to the readable material in the
+  # header as well as the padding that frequently appears.
   def build_frequency_list
+    # read the 512 byte chunk into the variable, get the size,
+    # and count each value of the 256 possibilites.  Stored in @char_frequency
     file_stream = IO.binread(@file_name, @byte_chunk)
     block_size = file_stream.length * 1.0
     file_unpacked = file_stream.unpack('C*').map { |c| c.to_s }
@@ -30,6 +36,9 @@ class DetectEncryption
     end
   end
 
+  # Performs the math on the character frequency based on Shannons Entropy forumula
+  # The number between 0-8 should represent the "randomness" of the file, with 8 being
+  # totally random and 0 being entirely orderly.
   def calculate_entropy
     entropy = 0.0
     @char_frequency.each do |frequency|
@@ -38,6 +47,7 @@ class DetectEncryption
     @entropy = entropy * -1
   end
 
+  # Gets the output from the unix 'file' command
   def generate_header_info
     magic = FileMagic.new
     @header_info = magic.file(@file_name)
@@ -46,6 +56,10 @@ class DetectEncryption
     @header_info
   end
 
+  # Compresses the provided filename and provides the ration of zipped / unzipped
+  # File compression depends on lower entropy of the file, therefore if the file
+  # cannot be significantly reduced in size by compression, it is likely encrypted.
+  # The method cleans up the compressed file when complete.
   def compress_file
     folder = "./"
     zipfile_name = "./test_file.zip"
